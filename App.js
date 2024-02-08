@@ -1,5 +1,6 @@
 import {
   Button,
+  Image,
   SafeAreaView,
   StatusBar,
   StyleSheet,
@@ -7,12 +8,15 @@ import {
   View,
 } from "react-native";
 
+import logo from "./assets/images/logo.png";
+
 export default function App() {
   return (
     <>
       <StatusBar barStyle="light-content" />
       <SafeAreaView style={estilos.container}>
         <View style={estilos.viewLogo}>
+          <Image source={logo} style={estilos.logo} />
           <Text>Leleco Filmes</Text>
         </View>
 
@@ -37,13 +41,18 @@ const estilos = StyleSheet.create({
   },
 
   viewLogo: {
-    backgroundColor: "purple",
+    backgroundColor: "white",
     flex: 4,
     marginLeft: 40,
     marginRight: 40,
     alignItems: "center",
     justifyContent: "flex-end",
     width: "80%",
+  },
+
+  logo: {
+    width: 128,
+    height: 128,
   },
 
   viewBotoes: {
