@@ -1,6 +1,7 @@
 import {
   Button,
   Image,
+  Pressable,
   SafeAreaView,
   StatusBar,
   StyleSheet,
@@ -8,7 +9,7 @@ import {
   View,
 } from "react-native";
 
-import logo from "./assets/images/logo.png";
+import logo from "./assets/images/lelecofilmes-logo.png";
 
 export default function App() {
   return (
@@ -21,8 +22,12 @@ export default function App() {
         </View>
 
         <View style={estilos.viewBotoes}>
-          <Button title="Pesquisar" />
-          <Button title="Favoritos" />
+          <Pressable style={estilos.botao}>
+            <Text style={estilos.textoBotao}>Pesquisar</Text>
+          </Pressable>
+          <Pressable style={estilos.botao}>
+            <Text style={estilos.textoBotao}>Favoritos</Text>
+          </Pressable>
         </View>
 
         <View style={estilos.viewRodape}>
@@ -56,7 +61,7 @@ const estilos = StyleSheet.create({
   },
 
   viewBotoes: {
-    backgroundColor: "grey",
+    backgroundColor: "white",
     flex: 2,
     flexDirection: "row",
     justifyContent: "space-around",
@@ -64,6 +69,17 @@ const estilos = StyleSheet.create({
     marginRight: 40,
     alignItems: "flex-start",
     width: "80%",
+  },
+
+  botao: {
+    borderStyle: "solid",
+    borderWidth: 2,
+    padding: 16,
+    backgroundColor: "#eaac33",
+  },
+
+  textoBotao: {
+    color: "#3e302c",
   },
 
   viewRodape: {
