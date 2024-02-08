@@ -7,7 +7,7 @@
     "icon": "./assets/images/dahora.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/images/splash-dahora.png",
+      "image": "./assets/images/splash-lelecofilmes.png",
       "resizeMode": "contain",
       "backgroundColor": "#000000"
     },

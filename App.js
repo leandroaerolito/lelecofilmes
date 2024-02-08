@@ -10,6 +10,7 @@ import {
 } from "react-native";
 
 import logo from "./assets/images/lelecofilmes-logo.png";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function App() {
   return (
@@ -18,15 +19,18 @@ export default function App() {
       <SafeAreaView style={estilos.container}>
         <View style={estilos.viewLogo}>
           <Image source={logo} style={estilos.logo} />
-          <Text>Leleco Filmes</Text>
+          <Ionicons name="search" size={24} color="black" />
+          <Text>Assista de qualquer lugar</Text>
         </View>
 
         <View style={estilos.viewBotoes}>
           <Pressable style={estilos.botao}>
             <Text style={estilos.textoBotao}>Pesquisar</Text>
+            <Ionicons name="search" size={16} color="white" />
           </Pressable>
           <Pressable style={estilos.botao}>
             <Text style={estilos.textoBotao}>Favoritos</Text>
+            <Ionicons name="star" size={16} color="white" />
           </Pressable>
         </View>
 
