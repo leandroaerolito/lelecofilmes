@@ -11,16 +11,40 @@ import {
 
 import logo from "./assets/images/lelecofilmes-logo.png";
 import { Ionicons } from "@expo/vector-icons";
+import { useCallback } from "react";
+import { useFonts } from "expo-font";
+import * as SplashScreen from "expo-splash-screen";
+
+/* Manter a tela splash visível enquanto não programarmos a ação de ocultar*/
+SplashScreen.preventAutoHideAsync();
 
 export default function App() {
+  const [fontsLoaded, fontError] = useFonts({
+    "Monoton-Regular": require("./assets/fonts/Monoton-Regular.ttf"),
+  });
+
+  /* Função atrelada ao hook useCallback. 
+      Quando uma função está conectada ao useCallback, garantimos que a referência dela é armazenada na memória somente uma vez. */
+  const aoAtualizarLayout = useCallback(async () => {
+    /* Se estiver tudo 'ok' com o carregamento */
+    if (fontsLoaded || fontError) {
+      /* Escondemos o splashscreen */
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded, fontError]);
+
+  if (!fontsLoaded && !fontError) {
+    return null;
+  }
+
   return (
     <>
       <StatusBar barStyle="light-content" />
-      <SafeAreaView style={estilos.container}>
+      <SafeAreaView style={estilos.container} onLayout={aoAtualizarLayout}>
         <View style={estilos.viewLogo}>
           <Image source={logo} style={estilos.logo} />
           <Ionicons name="search" size={24} color="black" />
-          <Text>Assista de qualquer lugar</Text>
+          <Text style={estilos.titulo}>Assista de qualquer lugar</Text>
         </View>
 
         <View style={estilos.viewBotoes}>
@@ -64,6 +88,12 @@ const estilos = StyleSheet.create({
     height: 128,
   },
 
+  titulo: {
+    fontFamily: "Monoton-Regular",
+    fontSize: 16,
+    color: "#5a51a6",
+  },
+
   viewBotoes: {
     backgroundColor: "white",
     flex: 2,
@@ -78,8 +108,11 @@ const estilos = StyleSheet.create({
   botao: {
     borderStyle: "solid",
     borderWidth: 2,
-    padding: 16,
+    padding: 10,
     backgroundColor: "#eaac33",
+    borderRadius: 10,
+    fontWeight: "bold",
+    fontSize: 50,
   },
 
   textoBotao: {
