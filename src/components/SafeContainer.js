@@ -33,6 +33,6 @@ const estilos = StyleSheet.create({
     backgroundColor: "white",
     flex: 1,
     alignItems: "center",
-    justifyContent: "flex-end",
+    justifyContent: "center",
   },
 });
