@@ -20,7 +20,8 @@ SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const [fontsLoaded, fontError] = useFonts({
-    "Monoton-Regular": require("./assets/fonts/Monoton-Regular.ttf"),
+    "Montserrat-Variable": require("./assets/fonts/Montserrat-Variable.ttf"),
+    NotoSans: require("./assets/fonts/NotoSans-VariableFont.ttf"),
   });
 
   /* Função atrelada ao hook useCallback. 
@@ -43,7 +44,6 @@ export default function App() {
       <SafeAreaView style={estilos.container} onLayout={aoAtualizarLayout}>
         <View style={estilos.viewLogo}>
           <Image source={logo} style={estilos.logo} />
-          <Ionicons name="search" size={24} color="black" />
           <Text style={estilos.titulo}>Assista de qualquer lugar</Text>
         </View>
 
@@ -117,6 +117,9 @@ const estilos = StyleSheet.create({
 
   textoBotao: {
     color: "#3e302c",
+    fontFamily: "NotoSans",
+    fontSize: 16,
+    fontWeight: "bold",
   },
 
   viewRodape: {
