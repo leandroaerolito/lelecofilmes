@@ -12,7 +12,10 @@ export default function Home({ navigation }) {
       </View>
 
       <View style={estilos.viewBotoes}>
-        <Pressable style={estilos.botao}>
+        <Pressable
+          style={estilos.botao}
+          onPress={() => navigation.navigate("Pesquisar")}
+        >
           <Text style={estilos.textoBotao}>Pesquisar</Text>
           <Ionicons name="search" size={12} color="white" />
         </Pressable>
