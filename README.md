@@ -2,6 +2,12 @@
 
 Exemplo de app nativo multiplataforma criado com React Native e Expo.
 
+## Branch 03
+
+- Criação das telas básicas: Sobre a Privacidade
+- Componente `Scrollview` para conteúdos maiores que a tela com suporte à rolagem.
+- Componente `Linking` para criação de link para a web.
+
 ## Branch 02
 
 ### Utilização de fontes adicionais
