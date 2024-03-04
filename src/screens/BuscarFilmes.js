@@ -64,13 +64,14 @@ const estilos = StyleSheet.create({
   subContainer: {
     flex: 1,
     padding: 16,
+    marginTop: 30,
   },
 
   BuscarFilmes: {
     height: 40,
     // margin: 12,
-    marginTop: 15,
-    marginBottom: 15,
+    marginTop: 30,
+    marginBottom: 30,
     borderWidth: 1,
     padding: 10,
     width: "85%",

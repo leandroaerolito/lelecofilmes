@@ -7,10 +7,13 @@ import SafeContainer from "../components/SafeContainer";
    Prop especial e definida pelo React Navigation. Através dela que é possível acessar valores passados por meio de navegação entre telas. */
 
 export default function Resultados({ route }) {
+  // Capturando o parâmetro filme vindo de BuscarFilmes
+  const { filme } = route.params;
+
   return (
     <SafeContainer>
       <View style={estilos.subContainer}>
-        <Text style={estilos.texto}>Você buscou por:</Text>
+        <Text style={estilos.texto}>Você buscou por: {filme}</Text>
       </View>
     </SafeContainer>
   );
