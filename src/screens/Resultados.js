@@ -3,7 +3,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import SafeContainer from "../components/SafeContainer";
 
-/* Pro route
+/* Prop route
    Prop especial e definida pelo React Navigation. Através dela que é possível acessar valores passados por meio de navegação entre telas. */
 
 export default function Resultados({ route }) {
