@@ -6,6 +6,7 @@ import Home from "./src/screens/Home";
 import Sobre from "./src/screens/Sobre";
 import Privacidade from "./src/screens/Privacidade";
 import Pesquisar from "./src/screens/BuscarFilmes";
+import Resultados from "./src/screens/Resultados";
 
 // Criação/Inicialização do mecanismo Stack
 const Stack = createNativeStackNavigator();
@@ -39,6 +40,7 @@ export default function App() {
             component={Pesquisar}
             options={{ title: "Qual filme quer pesquisar?" }}
           />
+          <Stack.Screen name="Resultados" component={Resultados} />
         </Stack.Navigator>
       </NavigationContainer>
     </>

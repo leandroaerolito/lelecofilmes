@@ -11,7 +11,7 @@ import SafeContainer from "../components/SafeContainer";
 import { Ionicons } from "@expo/vector-icons";
 import React, { useState } from "react";
 
-export default function BuscarFilmes() {
+export default function BuscarFilmes({ navigation }) {
   const [filme, setFilme] = useState("");
 
   const filmeDigitado = (valorDigitado) => {
@@ -26,13 +26,15 @@ export default function BuscarFilmes() {
         }
         ====> Se o 'state' filme não foi definido/indicado/preenchido
     */
-    if (text === "") {
+    if (filme === "") {
       Vibration.vibrate(1000);
-      Alert.alert("Ops! Você deve digitar um filme!");
-    } else Alert.alert("Você procurou por:", `${text}`);
+      return Alert.alert("Ops! Você deve digitar um filme!");
+    }
 
-    /* Alert.alert ("Você procurou por:", filme); */
+    /* Redirecionamento para a tela de Resultados paassando o filme para ela através do segundo parâmetro do método 'navigate' OBS: Não se esqueça de definir a prop navigation no componente */
+    navigation.navigate("Resultados", { filme });
   };
+
   return (
     <SafeContainer>
       <View style={estilos.subContainer}>
@@ -43,8 +45,8 @@ export default function BuscarFilmes() {
           <Ionicons name="film-sharp" size={32} color="#eaac33" />
           <TextInput
             style={estilos.BuscarFilmes}
-            onChangeText={onChangeText}
-            value={text}
+            onChangeText={filmeDigitado}
+            //value={text}
             placeholder="Digite o nome do filme"
             placeholderTextColor="#eaac33"
             maxLength={40}
