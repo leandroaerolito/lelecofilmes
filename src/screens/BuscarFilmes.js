@@ -9,15 +9,29 @@ import {
 } from "react-native";
 import SafeContainer from "../components/SafeContainer";
 import { Ionicons } from "@expo/vector-icons";
-import React from "react";
+import React, { useState } from "react";
 
 export default function BuscarFilmes() {
+  const [filme, setFilme] = useState("");
+
+  const filmeDigitado = (valorDigitado) => {
+    setFilme(valorDigitado);
+  };
+
   const [text, onChangeText] = React.useState("");
   const procurar = () => {
+    /* OUTRA FORMA DE FAZER: 
+       if (!filme) { 
+        return Alert.alert ("Ops!", "Você deve digitar um filme!");
+        }
+        ====> Se o 'state' filme não foi definido/indicado/preenchido
+    */
     if (text === "") {
       Vibration.vibrate(1000);
-      Alert.alert("Ops! você deve digitar um filme!");
+      Alert.alert("Ops! Você deve digitar um filme!");
     } else Alert.alert("Você procurou por:", `${text}`);
+
+    /* Alert.alert ("Você procurou por:", filme); */
   };
   return (
     <SafeContainer>
@@ -32,6 +46,8 @@ export default function BuscarFilmes() {
             onChangeText={onChangeText}
             value={text}
             placeholder="Digite o nome do filme"
+            placeholderTextColor="#eaac33"
+            maxLength={40}
             enterKeyHint="search"
             onSubmitEditing={procurar}
           />
