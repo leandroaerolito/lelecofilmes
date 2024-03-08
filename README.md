@@ -2,6 +2,21 @@
 
 Exemplo de app nativo multiplataforma criado com React Native e Expo.
 
+## Branch 06-tela-de-resultados-e-programação-api
+
+### RESUMO
+
+#### API de Filmes
+
+- Cadastro na API TheMovieDB
+- Criação uma chave de API (API Key)
+- Configuração de variável ambiente através do arquivo `.env` contendo a API Key via Expo (arquivo ENV são ignorados no versionamento).
+
+#### Consumo de dados da API
+
+- Instalação da lib **Axios**
+- Configuração do `services/api-moviedb.js` contendo a programação báscia de acesso à API para uso em diferentes partes do app.
+
 ## Branch 05-desafio--tela-BuscarFilmes
 
 ### Solução: recursos utilizados
