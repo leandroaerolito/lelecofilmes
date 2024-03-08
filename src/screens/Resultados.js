@@ -1,10 +1,18 @@
 // src/screens/Resultados.js
 
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import {
+  ActivityIndicator,
+  FlatList,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import SafeContainer from "../components/SafeContainer";
 import CardFilme from "../components/CardFilme";
 import { api, apiKey } from "../services/api-moviedb";
 import { useEffect, useState } from "react";
+import Separador from "../components/Separador";
+import ListaVazia from "../components/ListaVazia";
 
 /* Prop route
    Prop especial e definida pelo React Navigation. Através dela que é possível acessar valores passados por meio de navegação entre telas. */
@@ -12,6 +20,9 @@ import { useEffect, useState } from "react";
 export default function Resultados({ route }) {
   /* State para gerenciar os resultados da busca da API*/
   const [resultados, setResultados] = useState([]);
+
+  /* State para gerenciar o loading (mostrar/esconder) */
+  const [loading, setLoading] = useState(true);
 
   // Capturando o parâmetro filme vindo de BuscarFilmes
   const { filme } = route.params;
@@ -30,6 +41,8 @@ export default function Resultados({ route }) {
 
         /* Adicionando os resultados ao state*/
         setResultados(resposta.data.results);
+
+        setLoading(false);
       } catch (error) {
         console.error("Deu ruim: " + error.message);
       }
@@ -42,18 +55,21 @@ export default function Resultados({ route }) {
       <View style={estilos.subContainer}>
         <Text style={estilos.texto}>Você buscou por: {filme}</Text>
 
-        <View style={estilos.viewFilmes}>
-          <FlatList
-            // Prop data apontando para o state contendo os dados para a FlatList
-            data={resultados}
-            // Extraindo a chave/key de cada registro/item/filme único
-            keyExtractor={(item) => item.id}
-            // Prop que irá renderizar cada item/filme em um componente
-            renderItem={({ item }) => {
-              return <CardFilme filme={item} />;
-            }}
-          />
-        </View>
+        {loading && <ActivityIndicator size="large" color="#eaac33" />}
+
+        {!loading && (
+          <View style={estilos.viewFilmes}>
+            <FlatList
+              data={resultados}
+              keyExtractor={(item) => item.id}
+              renderItem={({ item }) => {
+                return <CardFilme filme={item} />;
+              }}
+              ListEmptyComponent={ListaVazia}
+              ItemSeparatorComponent={Separador}
+            />
+          </View>
+        )}
       </View>
     </SafeContainer>
   );
