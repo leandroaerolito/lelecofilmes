@@ -17,12 +17,12 @@ export default function Home({ navigation }) {
           onPress={() => navigation.navigate("Pesquisar")}
         >
           <Text style={estilos.textoBotao}>Pesquisar</Text>
-          <Ionicons name="search" size={12} color="white" />
+          <Ionicons name="search" size={20} color="white" />
         </Pressable>
 
         <Pressable style={estilos.botao}>
           <Text style={estilos.textoBotao}>Favoritos</Text>
-          <Ionicons name="star" size={12} color="white" />
+          <Ionicons name="star" size={20} color="white" />
         </Pressable>
       </View>
 
@@ -94,6 +94,8 @@ const estilos = StyleSheet.create({
     borderRadius: 10,
     fontWeight: "bold",
     // fontSize: 10,
+    alignItems: "center",
+    paddingVertical: 10,
   },
 
   textoBotao: {
