@@ -8,6 +8,7 @@ import Privacidade from "./src/screens/Privacidade";
 import Pesquisar from "./src/screens/BuscarFilmes";
 import Resultados from "./src/screens/Resultados";
 import Detalhes from "./src/screens/Detalhes";
+import Favoritos from "./src/screens/Favoritos";
 /*import { useNavigation } from "@react-navigation/native";*/
 
 // Criação/Inicialização do mecanismo Stack
@@ -43,6 +44,7 @@ export default function App() {
             options={{ title: "Qual filme quer pesquisar?" }}
           />
           <Stack.Screen name="Resultados" component={Resultados} />
+          <Stack.Screen name="Favoritos" component={Favoritos} />
           <Stack.Screen
             name="Detalhes"
             component={Detalhes}
