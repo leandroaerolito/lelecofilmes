@@ -1,4 +1,4 @@
-import { StatusBar } from "react-native";
+import { Button, StatusBar } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
@@ -8,6 +8,7 @@ import Privacidade from "./src/screens/Privacidade";
 import Pesquisar from "./src/screens/BuscarFilmes";
 import Resultados from "./src/screens/Resultados";
 import Detalhes from "./src/screens/Detalhes";
+/*import { useNavigation } from "@react-navigation/native";*/
 
 // Criação/Inicialização do mecanismo Stack
 const Stack = createNativeStackNavigator();
@@ -42,7 +43,23 @@ export default function App() {
             options={{ title: "Qual filme quer pesquisar?" }}
           />
           <Stack.Screen name="Resultados" component={Resultados} />
-          <Stack.Screen name="Detalhes" component={Detalhes} />
+          <Stack.Screen
+            name="Detalhes"
+            component={Detalhes}
+            options={({ navigation }) => {
+              return {
+                headerRight: () => (
+                  <Button
+                    color="black"
+                    onPress={() => navigation.navigate("Home")}
+                    title="Home"
+                  />
+
+                  /*ESTA É UMA SEGUNDA OPÇÃO DE FAZER ESTA NAVEGAÇÃO, A ESCOLHIDA PELO PROFESSOR*/
+                ),
+              };
+            }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </>
