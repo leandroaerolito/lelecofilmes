@@ -1,4 +1,12 @@
-import { Alert, Image, Pressable, StyleSheet, Text, View } from "react-native";
+import {
+  Alert,
+  Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  Vibration,
+  View,
+} from "react-native";
 import imagemAlternativa from "../../assets/images/foto-alternativa.jpg";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
@@ -28,8 +36,25 @@ export default function CardFilme({ filme }) {
         return filmeNaLista.id == filme.id;
       });
 
-      /* 4) Se o filme não estiver na lista, então vamos adicioná-lo. */
+      /* 4) Verificação, altera e registro do filme */
+
+      /* 4.1) Se já tem filmes, avisaremos ao usuário.  */
+      if (jaTemFilme) {
+        Alert.alert("Ops!", "Você já salvou este filme!");
+        Vibration.vibrate();
+        return;
+      }
+
+      /* 4.2) Senão, vamos colocar na lista.  */
+      listaDeFilmes.push(filme);
+
       /* 5) Usamos o AsyncStorage para gravar no armazenamento offline do dispositivo. */
+      await AsyncStorage.setItem(
+        "@favoritosleleco",
+        JSON.stringify(listaDeFilmes)
+      );
+
+      Alert.alert("Lista de Favoritos", `${title} foi salvo com sucesso!`);
     } catch (error) {
       console.log(error);
       Alert.alert("Erro", "Ocorreu um erro ao salvar o filme");
