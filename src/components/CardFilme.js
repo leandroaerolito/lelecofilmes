@@ -22,7 +22,12 @@ export default function CardFilme({ filme }) {
             Se `filmesFavoritos` existir (ou seja, tem dados no storage), pegamos estes dados (strings) e convertemos em objeto (JSON.parse). Caso contrário, `listaDeFilmes` será um array vazio. */
       const listaDeFilmes = filmesFavoritos ? JSON.parse(filmesFavoritos) : [];
 
-      /* 3) Verificar se já tem algum filme na lista. */
+      /* 3) Verificar se já tem algum filme na lista.
+            Usamos a função `some()` para avaliar se o ID do filme dentro da `listaDeFilmes` é o mesmo de um filme exibido na tela do app (nos Cards). Se for, retorna TRUE indicando que o filme já foi salvo em algum momento. Caso contrário, retorna FALSE indicando que o filme ainda não foi salvo.  */
+      const jaTemFilme = listaDeFilmes.some((filmeNaLista) => {
+        return filmeNaLista.id == filme.id;
+      });
+
       /* 4) Se o filme não estiver na lista, então vamos adicioná-lo. */
       /* 5) Usamos o AsyncStorage para gravar no armazenamento offline do dispositivo. */
     } catch (error) {
