@@ -54,7 +54,7 @@ export default function CardFilme({ filme }) {
         JSON.stringify(listaDeFilmes)
       );
 
-      Alert.alert("Lista de Favoritos", `${title} foi salvo com sucesso!`);
+      Alert.alert("Lista de Favoritos", `${title}: foi salvo com sucesso!`);
     } catch (error) {
       console.log(error);
       Alert.alert("Erro", "Ocorreu um erro ao salvar o filme");
