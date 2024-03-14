@@ -8,7 +8,7 @@ export default function Favoritos() {
     <SafeContainer>
       <View style={estilos.subContainer}>
         <View style={estilos.viewFavoritos}>
-          <Text style={estilos.texto}>Favoritos...</Text>
+          <Text style={estilos.texto}>Esta é a sua lista de Favoritos...</Text>
         </View>
       </View>
     </SafeContainer>

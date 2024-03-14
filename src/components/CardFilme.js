@@ -1,4 +1,4 @@
-import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { Alert, Image, Pressable, StyleSheet, Text, View } from "react-native";
 import imagemAlternativa from "../../assets/images/foto-alternativa.jpg";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
@@ -8,6 +8,22 @@ export default function CardFilme({ filme }) {
   const { title, poster_path } = filme;
 
   const navigation = useNavigation();
+
+  const salvar = async () => {
+    /*Alert.alert("Lista de Favoritos", "Você salvou este filme."); */
+
+    try {
+      /* 1) Verificar/Carregar os favoritos aramazenados no AsyncStorage. */
+      /* Alt + Shift + A = comentários */
+      /* 2) Verificar/Criar uma lista de filmes favoritos (dados). */
+      /* 3) Verificar se já tem algum filme na lista. */
+      /* 4) Se o filme não estiver na lista, então vamos adicioná-lo. */
+      /* 5) Usamos o AsyncStorage para gravar no armazenamento offline do dispositivo. */
+    } catch (error) {
+      console.log(error);
+      Alert.alert("Erro", "Ocorreu um erro ao salvar o filme");
+    }
+  };
 
   return (
     <View style={estilos.card}>
@@ -31,7 +47,7 @@ export default function CardFilme({ filme }) {
               <Ionicons name="book" size={12} /> Leia mais
             </Text>
           </Pressable>
-          <Pressable style={estilos.botao}>
+          <Pressable style={estilos.botao} onPress={salvar}>
             <Text style={estilos.textoBotao}>
               {" "}
               <Ionicons name="add-circle" size={12} /> Salvar
