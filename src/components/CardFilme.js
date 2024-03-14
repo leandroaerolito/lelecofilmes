@@ -2,6 +2,7 @@ import { Alert, Image, Pressable, StyleSheet, Text, View } from "react-native";
 import imagemAlternativa from "../../assets/images/foto-alternativa.jpg";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function CardFilme({ filme }) {
   /* Extraindo as informações do filme (título e imagem da capa)*/
@@ -13,7 +14,9 @@ export default function CardFilme({ filme }) {
     /*Alert.alert("Lista de Favoritos", "Você salvou este filme."); */
 
     try {
-      /* 1) Verificar/Carregar os favoritos aramazenados no AsyncStorage. */
+      /* 1) Verificar/Carregar os favoritos aramazenados no AsyncStorage. Usamos `getItem` do AsyncStorage para analisar se existe um armazenamento com o nome indicado (@favoritosleleco). Existindo, ele é carregado para a const `filmesFavoritos´. Se não existir, será criado posteriormente.  */
+      const filmesFavoritos = await AsyncStorage.getItem("@favoritosleleco");
+
       /* Alt + Shift + A = comentários */
       /* 2) Verificar/Criar uma lista de filmes favoritos (dados). */
       /* 3) Verificar se já tem algum filme na lista. */
