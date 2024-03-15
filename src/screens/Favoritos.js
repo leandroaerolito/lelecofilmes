@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Ionicons } from "@expo/vector-icons";
 
-export default function Favoritos() {
+export default function Favoritos({ navigation }) {
   /* State para registrar os dados carregados do storage */
   const [listaFavoritos, setListaFavoritos] = useState([]);
 
@@ -55,8 +55,13 @@ export default function Favoritos() {
         <ScrollView showsVerticalScrollIndicator={false}>
           {listaFavoritos.map((filme) => {
             return (
-              <View style={estilos.item}>
-                <Pressable style={estilos.botaoFilme}>
+              <View key={filme.id} style={estilos.item}>
+                <Pressable
+                  onPress={() => {
+                    navigation.navigate("Detalhes", { filme });
+                  }}
+                  style={estilos.botaoFilme}
+                >
                   <Text style={estilos.titulo}>{filme.title}</Text>
                 </Pressable>
                 <Pressable style={estilos.botaoExcluir}>
@@ -104,8 +109,24 @@ const estilos = StyleSheet.create({
     color: "red",
   },
 
-  item: {},
-  botaoFilme: {},
-  titulo: {},
-  botaoExcluir: {},
+  item: {
+    padding: 8,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    backgroundColor: "#eaac33",
+    marginBottom: 12,
+    borderRadius: 10,
+    //alignItems: "center",
+  },
+  botaoFilme: { flex: 1 },
+  titulo: {
+    color: "#3e320c",
+    fontSize: 16,
+  },
+
+  botaoExcluir: {
+    backgroundColor: "darkred",
+    padding: 4,
+    borderRadius: 4,
+  },
 });

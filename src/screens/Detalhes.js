@@ -100,7 +100,7 @@ const estilos = StyleSheet.create({
     fontWeight: "bold",
   },
 
-  avaliacao: { color: "blue" },
+  avaliacao: { color: "#3e320c" },
   lancamento: { color: "red" },
   descricao: { color: "gray" },
 });
