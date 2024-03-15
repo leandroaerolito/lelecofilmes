@@ -101,6 +101,6 @@ const estilos = StyleSheet.create({
   },
 
   avaliacao: { color: "#3e320c" },
-  lancamento: { color: "red" },
-  descricao: { color: "gray" },
+  lancamento: { color: "#eaac33", flexDirection: "row" },
+  descricao: { color: "#3e320c" },
 });

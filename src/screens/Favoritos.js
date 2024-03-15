@@ -36,8 +36,23 @@ export default function Favoritos({ navigation }) {
     carregarFavoritos();
   }, []);
 
-  /* Log no state */
-  console.log(listaFavoritos);
+  const excluirTodosFavoritos = async () => {
+    Alert.alert(
+      "Excluir TODOS?",
+      "Tem certeza que deseja excluir todos os favoritos?",
+      [
+        /* Propriedade style (aparência do botão): SOMENTE NO IOS que faz diferença */
+        {
+          text: "Cancelar",
+          style: "cancel", // verificar
+        },
+        {
+          text: "Sim, manda ver",
+          style: "destructive",
+        },
+      ]
+    );
+  };
 
   return (
     <SafeContainer>
@@ -45,7 +60,10 @@ export default function Favoritos({ navigation }) {
         <View style={estilos.viewFavoritos}>
           <Text style={estilos.texto}>Quantidade:{listaFavoritos.length}</Text>
 
-          <Pressable style={estilos.botaoExcluirFavoritos}>
+          <Pressable
+            onPress={excluirTodosFavoritos}
+            style={estilos.botaoExcluirFavoritos}
+          >
             <Text style={estilos.textoBotao}>
               <Ionicons name="trash-outline" size={16} /> Excluir favoritos
             </Text>
@@ -65,7 +83,7 @@ export default function Favoritos({ navigation }) {
                   <Text style={estilos.titulo}>{filme.title}</Text>
                 </Pressable>
                 <Pressable style={estilos.botaoExcluir}>
-                  <Ionicons name="trash" size={16} />
+                  <Ionicons color="white" name="trash" size={16} />
                 </Pressable>
               </View>
             );
