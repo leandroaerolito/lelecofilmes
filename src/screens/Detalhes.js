@@ -47,13 +47,16 @@ export default function Detalhes({ route }) {
 
         <View style={estilos.conteudo}>
           <ScrollView showsVerticalScrollIndicator={false}>
-            <Text style={[estilos.texto, estilos.avaliacao]}>
-              Avaliação: {notaFilme.toFixed(2)}
-            </Text>
-            <Text style={[estilos.texto, estilos.lancamento]}>
-              Lançamento:{" "}
-              {dataLancamento ? formataData(dataLancamento) : "Indisponível"}
-            </Text>
+            <View style={estilos.descritivos}>
+              <Text style={[estilos.texto, estilos.avaliacao]}>
+                Avaliação: {notaFilme.toFixed(2)}
+              </Text>
+
+              <Text style={[estilos.texto, estilos.lancamento]}>
+                Lançamento:{" "}
+                {dataLancamento ? formataData(dataLancamento) : "Indisponível"}
+              </Text>
+            </View>
             <Text style={[estilos.texto, estilos.descricao]}>
               {descricao || (
                 <Text style={{ fontStyle: "italic" }}>Filme sem descrição</Text>
@@ -87,6 +90,9 @@ const estilos = StyleSheet.create({
     textAlign: "center",
     fontSize: 18,
     marginTop: 200,
+    flex: 1,
+    paddingTop: 10,
+    fontWeight: "bold",
   },
   conteudo: {
     padding: 16,
@@ -101,6 +107,15 @@ const estilos = StyleSheet.create({
   },
 
   avaliacao: { color: "#3e320c" },
-  lancamento: { color: "#eaac33", flexDirection: "row" },
+  lancamento: { color: "#3e320c" },
   descricao: { color: "#3e320c" },
+
+  descritivos: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    backgroundColor: "#eaac33",
+    borderTopRightRadius: 15,
+    borderBottomLeftRadius: 15,
+    padding: 8,
+  },
 });

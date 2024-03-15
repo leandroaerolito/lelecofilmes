@@ -47,7 +47,7 @@ export default function Favoritos({ navigation }) {
           style: "cancel", // verificar
         },
         {
-          text: "Sim, manda ver",
+          text: "Sim, quero excluir",
           style: "destructive",
           onPress: async () => {
             /* Removemos nosso storage de favoritos */
@@ -61,20 +61,41 @@ export default function Favoritos({ navigation }) {
     );
   };
 
+  const excluir = async (idFilme) => {
+    //Alert.alert("Filme", "Filme: " + idFilme);
+
+    /* Gerar uma nova lista de favoritos EXCETO o filme que será removido */
+
+    const novaListaDeFavoritos = listaFavoritos.filter(
+      (filmeDaLista) => filmeDaLista.id !== idFilme
+    );
+
+    /* Atualizar o state (memória) com os dados da nova lista SEM o filme removido */
+    setListaFavoritos(novaListaDeFavoritos);
+
+    /* Ataulizar o storage (memória física) com os dados da nova lista SEM o fime removido */
+    await AsyncStorage.setItem(
+      "@favoritosleleco",
+      JSON.stringify(novaListaDeFavoritos)
+    );
+  };
+
   return (
     <SafeContainer>
       <View style={estilos.subContainer}>
         <View style={estilos.viewFavoritos}>
           <Text style={estilos.texto}>Quantidade:{listaFavoritos.length}</Text>
 
-          <Pressable
-            onPress={excluirTodosFavoritos}
-            style={estilos.botaoExcluirFavoritos}
-          >
-            <Text style={estilos.textoBotao}>
-              <Ionicons name="trash-outline" size={16} /> Excluir favoritos
-            </Text>
-          </Pressable>
+          {listaFavoritos.length > 0 && (
+            <Pressable
+              onPress={excluirTodosFavoritos}
+              style={estilos.botaoExcluirFavoritos}
+            >
+              <Text style={estilos.textoBotao}>
+                <Ionicons name="trash-outline" size={16} /> Excluir favoritos
+              </Text>
+            </Pressable>
+          )}
         </View>
 
         <ScrollView showsVerticalScrollIndicator={false}>
@@ -89,7 +110,10 @@ export default function Favoritos({ navigation }) {
                 >
                   <Text style={estilos.titulo}>{filme.title}</Text>
                 </Pressable>
-                <Pressable style={estilos.botaoExcluir}>
+                <Pressable
+                  onPress={() => excluir(filme.id)}
+                  style={estilos.botaoExcluir}
+                >
                   <Ionicons color="white" name="trash" size={16} />
                 </Pressable>
               </View>
